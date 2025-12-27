@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telemedicine Portal - Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="logo.png" alt="Telemedicine Logo">
+    <h1>Telemedicine Portal</h1>
+  </div>
+  <div class="theme-toggle">
+    <button type="button" aria-label="Toggle Theme" onclick="toggleTheme()">🌙</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Create Your Account</h2>
+    <p class="subtitle">Join our secure digital healthcare service</p>
+
+    <form id="signupForm" novalidate>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" name="fullName" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" type="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Create a strong password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Register as</label>
+        <select id="role" name="role" required>
+          <option value="">Select your role</option>
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary">Create Account</button>
+
+      <p class="switch">
+        Already registered? <a href="index.html">Login here</a>
+      </p>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2025 Telemedicine Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

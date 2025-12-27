@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telemedicine Portal - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="logo.png" alt="Telemedicine Logo">
+    <h1>Telemedicine Portal</h1>
+  </div>
+  <div class="theme-toggle">
+    <button type="button" aria-label="Toggle Theme" onclick="toggleTheme()">🌙</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to consult certified doctors online</p>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" type="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+
+      <p class="switch">
+        New user? <a href="signup.html">Create an account</a>
+      </p>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2025 Telemedicine Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
