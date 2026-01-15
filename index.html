@@ -1,52 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Telemedicine Portal - Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login | Quantum Shield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
 </head>
 <body>
+    <div class="container">
+        <!-- Animated Background Elements -->
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel with Branding -->
+            <div class="left-panel">
+                <div class="brand-section">
+                    <div class="brand-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>QuantumShield</span>
+                    </div>
+                    <h1 class="brand-title">Secure Access Portal</h1>
+                    <p class="brand-subtitle">Enterprise-grade authentication with military-grade encryption</p>
+                    
+                    <div class="features-list">
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <span>End-to-End Encryption</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-fingerprint"></i>
+                            <span>Biometric Ready</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Lightning Fast</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-globe"></i>
+                            <span>Global Access</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="security-indicator">
+                    <div class="security-status">
+                        <div class="status-dot active"></div>
+                        <span>Security Status: <strong>Active</strong></span>
+                    </div>
+                    <div class="security-level">
+                        <div class="level-bar">
+                            <div class="level-fill" style="width: 95%"></div>
+                        </div>
+                        <span>Security Level: 95%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel with Login Form -->
+            <div class="right-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your QuantumShield account</p>
+                    </div>
+                    
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> Email Address
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="email" id="email" name="email" placeholder="Enter your corporate email" required>
+                                <i class="fas fa-check-circle validation-icon"></i>
+                            </div>
+                            <div class="input-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="label-row">
+                                <label for="password">
+                                    <i class="fas fa-key"></i> Password
+                                </label>
+                                <a href="#" class="forgot-link" id="forgotPassword">Forgot Password?</a>
+                            </div>
+                            <div class="input-with-icon">
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="passwordStrength"></div>
+                                </div>
+                                <span class="strength-text" id="strengthText">Password strength</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                Remember this device
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="secureSession">
+                                <span class="checkmark"></span>
+                                Secure session (2 hours)
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-login" id="loginButton">
+                            <span class="btn-text">Secure Login</span>
+                            <i class="fas fa-arrow-right btn-icon"></i>
+                        </button>
+                        
+                        <div class="divider">
+                            <span>or continue with</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <button type="button" class="social-btn microsoft">
+                                <i class="fab fa-microsoft"></i>
+                                <span>Microsoft</span>
+                            </button>
+                            <button type="button" class="social-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </button>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <p>Don't have an account? <a href="signup.html" class="signup-link">Create Account</a></p>
+                            <p class="privacy-note">
+                                <i class="fas fa-shield-alt"></i>
+                                Your data is protected by 256-bit SSL encryption
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Two-Factor Authentication Modal -->
+                <div id="twoFactorModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</h3>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Enter the 6-digit code sent to your authenticator app</p>
+                            <div class="otp-inputs">
+                                <input type="text" maxlength="1" class="otp-input">
+                                <input type="text" maxlength="1" class="otp-input">
+                                <input type="text" maxlength="1" class="otp-input">
+                                <input type="text" maxlength="1" class="otp-input">
+                                <input type="text" maxlength="1" class="otp-input">
+                                <input type="text" maxlength="1" class="otp-input">
+                            </div>
+                            <button class="btn-verify">Verify & Continue</button>
+                            <p class="resend-code">Didn't receive code? <a href="#">Resend in 0:30</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Status Footer -->
+        <div class="status-footer">
+            <div class="status-item">
+                <div class="status-indicator online"></div>
+                <span>System Status: <strong>Operational</strong></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-user-shield"></i>
+                <span>Last Login: <strong>2 hours ago</strong></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-clock"></i>
+                <span>Server Time: <strong id="serverTime">--:--:--</strong></span>
+            </div>
+        </div>
+    </div>
 
-<header class="header">
-  <div class="logo">
-    <img src="logo.png" alt="Telemedicine Logo">
-    <h1>Telemedicine Portal</h1>
-  </div>
-  <div class="theme-toggle">
-    <button type="button" aria-label="Toggle Theme" onclick="toggleTheme()">🌙</button>
-  </div>
-</header>
-
-<main class="container">
-  <section class="card">
-    <h2>Welcome Back</h2>
-    <p class="subtitle">Login to consult certified doctors online</p>
-
-    <form id="loginForm" novalidate>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input id="email" type="email" name="email" placeholder="Enter your email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" placeholder="Enter your password" required>
-      </div>
-
-      <button type="submit" class="btn-primary">Login</button>
-
-      <p class="switch">
-        New user? <a href="signup.html">Create an account</a>
-      </p>
-    </form>
-  </section>
-</main>
-
-<footer class="footer">
-  <p>&copy; 2025 Telemedicine Portal. All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
