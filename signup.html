@@ -1,66 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Telemedicine Portal - Signup</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Quantum Shield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
 </head>
 <body>
+    <div class="container">
+        <!-- Animated Background Elements -->
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel with Branding -->
+            <div class="left-panel">
+                <div class="brand-section">
+                    <div class="brand-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>QuantumShield</span>
+                    </div>
+                    <h1 class="brand-title">Join QuantumShield</h1>
+                    <p class="brand-subtitle">Experience the future of secure authentication</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Military-grade encryption</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Zero-knowledge protocol</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Security monitoring</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>GDPR & HIPAA compliant</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>99.9% Uptime guarantee</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="security-badge">
+                    <div class="badge-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <div class="badge-content">
+                        <h4>Enterprise Security</h4>
+                        <p>SOC 2 Type II Certified</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel with Signup Form -->
+            <div class="right-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Start your secure journey with us</p>
+                    </div>
+                    
+                    <form id="signupForm" class="auth-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">
+                                    <i class="fas fa-user"></i> First Name
+                                </label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                                <div class="input-feedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">
+                                    <i class="fas fa-user"></i> Last Name
+                                </label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                                <div class="input-feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signupEmail">
+                                <i class="fas fa-envelope"></i> Email Address
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="email" id="signupEmail" name="email" placeholder="john.doe@company.com" required>
+                                <i class="fas fa-check-circle validation-icon"></i>
+                            </div>
+                            <div class="input-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signupPassword">
+                                <i class="fas fa-key"></i> Create Password
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="password" id="signupPassword" name="password" placeholder="Create a strong password" required>
+                                <button type="button" class="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-requirements">
+                                <p class="requirements-title">Password must contain:</p>
+                                <ul class="requirements-list">
+                                    <li id="req-length" class="requirement">
+                                        <i class="fas fa-circle"></i>
+                                        <span>At least 8 characters</span>
+                                    </li>
+                                    <li id="req-uppercase" class="requirement">
+                                        <i class="fas fa-circle"></i>
+                                        <span>One uppercase letter</span>
+                                    </li>
+                                    <li id="req-lowercase" class="requirement">
+                                        <i class="fas fa-circle"></i>
+                                        <span>One lowercase letter</span>
+                                    </li>
+                                    <li id="req-number" class="requirement">
+                                        <i class="fas fa-circle"></i>
+                                        <span>One number</span>
+                                    </li>
+                                    <li id="req-special" class="requirement">
+                                        <i class="fas fa-circle"></i>
+                                        <span>One special character</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="signupPasswordStrength"></div>
+                                </div>
+                                <span class="strength-text" id="signupStrengthText">Password strength</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">
+                                <i class="fas fa-key"></i> Confirm Password
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                                <button type="button" class="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="input-feedback" id="confirmFeedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">
+                                <i class="fas fa-building"></i> Company (Optional)
+                            </label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to security updates and tips
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-signup" id="signupButton">
+                            <span class="btn-text">Create Secure Account</span>
+                            <i class="fas fa-shield-alt btn-icon"></i>
+                        </button>
+                        
+                        <div class="divider">
+                            <span>or sign up with</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                            <button type="button" class="social-btn microsoft">
+                                <i class="fab fa-microsoft"></i>
+                                <span>Microsoft</span>
+                            </button>
+                            <button type="button" class="social-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </button>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <p>Already have an account? <a href="index.html" class="login-link">Sign In</a></p>
+                            <p class="privacy-note">
+                                <i class="fas fa-lock"></i>
+                                All data is encrypted end-to-end. We never store plaintext passwords.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Success Modal -->
+                <div id="successModal" class="modal">
+                    <div class="modal-content success">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-check-circle"></i> Account Created Successfully!</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="success-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                            <p>Your QuantumShield account has been created successfully.</p>
+                            <p>We've sent a verification email to your address.</p>
+                            <button class="btn-continue" onclick="window.location.href='index.html'">
+                                Continue to Login
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Status Footer -->
+        <div class="status-footer">
+            <div class="status-item">
+                <div class="status-indicator online"></div>
+                <span>System Status: <strong>Operational</strong></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-server"></i>
+                <span>Data Center: <strong>EU-West-1</strong></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-clock"></i>
+                <span>Server Time: <strong id="serverTime">--:--:--</strong></span>
+            </div>
+        </div>
+    </div>
 
-<header class="header">
-  <div class="logo">
-    <img src="logo.png" alt="Telemedicine Logo">
-    <h1>Telemedicine Portal</h1>
-  </div>
-  <div class="theme-toggle">
-    <button type="button" aria-label="Toggle Theme" onclick="toggleTheme()">🌙</button>
-  </div>
-</header>
-
-<main class="container">
-  <section class="card">
-    <h2>Create Your Account</h2>
-    <p class="subtitle">Join our secure digital healthcare service</p>
-
-    <form id="signupForm" novalidate>
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input id="fullName" type="text" name="fullName" placeholder="Enter your full name" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input id="email" type="email" name="email" placeholder="Enter your email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" placeholder="Create a strong password" required>
-      </div>
-
-      <div class="form-group">
-        <label for="role">Register as</label>
-        <select id="role" name="role" required>
-          <option value="">Select your role</option>
-          <option value="patient">Patient</option>
-          <option value="doctor">Doctor</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn-primary">Create Account</button>
-
-      <p class="switch">
-        Already registered? <a href="index.html">Login here</a>
-      </p>
-    </form>
-  </section>
-</main>
-
-<footer class="footer">
-  <p>&copy; 2025 Telemedicine Portal. All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
