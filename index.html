@@ -3,198 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login | Quantum Shield</title>
+    <title>NEXUS | Quantum Login</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Animated Background Elements -->
-        <div class="bg-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Panel with Branding -->
-            <div class="left-panel">
-                <div class="brand-section">
-                    <div class="brand-logo">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>QuantumShield</span>
-                    </div>
-                    <h1 class="brand-title">Secure Access Portal</h1>
-                    <p class="brand-subtitle">Enterprise-grade authentication with military-grade encryption</p>
-                    
-                    <div class="features-list">
-                        <div class="feature">
-                            <i class="fas fa-lock"></i>
-                            <span>End-to-End Encryption</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-fingerprint"></i>
-                            <span>Biometric Ready</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-bolt"></i>
-                            <span>Lightning Fast</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-globe"></i>
-                            <span>Global Access</span>
-                        </div>
+    <!-- Particle Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Glitch Effect Overlay -->
+    <div class="glitch-overlay"></div>
+    
+    <!-- Cyber Grid -->
+    <div class="cyber-grid"></div>
+    
+    <!-- Animated Orbs -->
+    <div class="orbs-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- Main Container with Glassmorphism -->
+    <div class="main-container">
+        <!-- Holographic Header -->
+        <div class="hologram-header">
+            <div class="hologram-logo">
+                <div class="logo-3d">
+                    <div class="cube">
+                        <div class="face front"><i class="fas fa-atom"></i></div>
+                        <div class="face back"><i class="fas fa-bolt"></i></div>
+                        <div class="face right"><i class="fas fa-infinity"></i></div>
+                        <div class="face left"><i class="fas fa-code"></i></div>
+                        <div class="face top"><i class="fas fa-shield-alt"></i></div>
+                        <div class="face bottom"><i class="fas fa-key"></i></div>
                     </div>
                 </div>
-                
-                <div class="security-indicator">
-                    <div class="security-status">
-                        <div class="status-dot active"></div>
-                        <span>Security Status: <strong>Active</strong></span>
-                    </div>
-                    <div class="security-level">
-                        <div class="level-bar">
-                            <div class="level-fill" style="width: 95%"></div>
-                        </div>
-                        <span>Security Level: 95%</span>
-                    </div>
+                <div class="logo-text">
+                    <span class="logo-main">NEXUS</span>
+                    <span class="logo-sub">QUANTUM ACCESS</span>
                 </div>
             </div>
             
-            <!-- Right Panel with Login Form -->
-            <div class="right-panel">
-                <div class="form-container">
-                    <div class="form-header">
-                        <h2>Welcome Back</h2>
-                        <p>Sign in to your QuantumShield account</p>
-                    </div>
-                    
-                    <form id="loginForm" class="auth-form">
-                        <div class="form-group">
-                            <label for="email">
-                                <i class="fas fa-envelope"></i> Email Address
-                            </label>
-                            <div class="input-with-icon">
-                                <input type="email" id="email" name="email" placeholder="Enter your corporate email" required>
-                                <i class="fas fa-check-circle validation-icon"></i>
-                            </div>
-                            <div class="input-feedback"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <div class="label-row">
-                                <label for="password">
-                                    <i class="fas fa-key"></i> Password
-                                </label>
-                                <a href="#" class="forgot-link" id="forgotPassword">Forgot Password?</a>
-                            </div>
-                            <div class="input-with-icon">
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                                <button type="button" class="toggle-password" id="togglePassword">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <div class="password-strength">
-                                <div class="strength-bar">
-                                    <div class="strength-fill" id="passwordStrength"></div>
-                                </div>
-                                <span class="strength-text" id="strengthText">Password strength</span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-options">
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="rememberMe">
-                                <span class="checkmark"></span>
-                                Remember this device
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="secureSession">
-                                <span class="checkmark"></span>
-                                Secure session (2 hours)
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn-login" id="loginButton">
-                            <span class="btn-text">Secure Login</span>
-                            <i class="fas fa-arrow-right btn-icon"></i>
-                        </button>
-                        
-                        <div class="divider">
-                            <span>or continue with</span>
-                        </div>
-                        
-                        <div class="social-login">
-                            <button type="button" class="social-btn google">
-                                <i class="fab fa-google"></i>
-                                <span>Google</span>
-                            </button>
-                            <button type="button" class="social-btn microsoft">
-                                <i class="fab fa-microsoft"></i>
-                                <span>Microsoft</span>
-                            </button>
-                            <button type="button" class="social-btn github">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </button>
-                        </div>
-                        
-                        <div class="form-footer">
-                            <p>Don't have an account? <a href="signup.html" class="signup-link">Create Account</a></p>
-                            <p class="privacy-note">
-                                <i class="fas fa-shield-alt"></i>
-                                Your data is protected by 256-bit SSL encryption
-                            </p>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Two-Factor Authentication Modal -->
-                <div id="twoFactorModal" class="modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</h3>
-                            <button class="modal-close">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Enter the 6-digit code sent to your authenticator app</p>
-                            <div class="otp-inputs">
-                                <input type="text" maxlength="1" class="otp-input">
-                                <input type="text" maxlength="1" class="otp-input">
-                                <input type="text" maxlength="1" class="otp-input">
-                                <input type="text" maxlength="1" class="otp-input">
-                                <input type="text" maxlength="1" class="otp-input">
-                                <input type="text" maxlength="1" class="otp-input">
-                            </div>
-                            <button class="btn-verify">Verify & Continue</button>
-                            <p class="resend-code">Didn't receive code? <a href="#">Resend in 0:30</a></p>
-                        </div>
-                    </div>
+            <div class="hologram-text">
+                <h1 class="glitch" data-text="SYSTEM ACCESS">SYSTEM ACCESS</h1>
+                <p class="cyber-subtitle">Secure Authentication Protocol v3.7</p>
+            </div>
+            
+            <!-- Scanning Animation -->
+            <div class="scanner">
+                <div class="scan-line"></div>
+                <div class="scan-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
         </div>
-        
-        <!-- System Status Footer -->
-        <div class="status-footer">
-            <div class="status-item">
-                <div class="status-indicator online"></div>
-                <span>System Status: <strong>Operational</strong></span>
+
+        <!-- Login Form Container -->
+        <div class="form-wrapper">
+            <!-- Form Tabs -->
+            <div class="form-tabs">
+                <button class="tab active" data-tab="login">
+                    <i class="fas fa-terminal"></i>
+                    <span>Login</span>
+                    <div class="tab-indicator"></div>
+                </button>
+                <button class="tab" data-tab="qr">
+                    <i class="fas fa-qrcode"></i>
+                    <span>QR Code</span>
+                    <div class="tab-indicator"></div>
+                </button>
+                <button class="tab" data-tab="biometric">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Biometric</span>
+                    <div class="tab-indicator"></div>
+                </button>
             </div>
-            <div class="status-item">
-                <i class="fas fa-user-shield"></i>
-                <span>Last Login: <strong>2 hours ago</strong></span>
+
+            <!-- Login Form -->
+            <div class="form-container active" id="loginForm">
+                <form class="cyber-form">
+                    <!-- Input Field with Floating Label -->
+                    <div class="input-field cyberglow">
+                        <div class="input-icon">
+                            <i class="fas fa-user-astronaut"></i>
+                            <div class="icon-pulse"></div>
+                        </div>
+                        <input type="text" id="username" autocomplete="off" required>
+                        <label for="username" class="cyber-label">
+                            <span class="label-text">IDENTITY VERIFICATION</span>
+                            <span class="label-hint">Enter your credentials</span>
+                        </label>
+                        <div class="input-effects">
+                            <div class="input-line"></div>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="input-stats">
+                            <div class="signal-bars">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <span class="status-text">READY</span>
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-field cyberglow">
+                        <div class="input-icon">
+                            <i class="fas fa-key"></i>
+                            <div class="icon-pulse"></div>
+                        </div>
+                        <input type="password" id="password" required>
+                        <label for="password" class="cyber-label">
+                            <span class="label-text">ENCRYPTION KEY</span>
+                            <span class="label-hint">Secure passphrase required</span>
+                        </label>
+                        <div class="input-effects">
+                            <div class="input-line"></div>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="input-actions">
+                            <button type="button" class="cyber-btn small" id="generatePassword">
+                                <i class="fas fa-random"></i>
+                                <span>Generate</span>
+                            </button>
+                            <button type="button" class="cyber-btn small toggle-password">
+                                <i class="fas fa-eye"></i>
+                                <span>View</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Check -->
+                    <div class="security-check">
+                        <div class="captcha-container">
+                            <div class="captcha-code">
+                                <span class="captcha-text">NXS-</span>
+                                <span class="captcha-animated">7B9C</span>
+                                <span class="captcha-text">-A2F</span>
+                            </div>
+                            <button type="button" class="cyber-btn xsmall" id="refreshCaptcha">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="captcha-input">
+                            <input type="text" id="captcha" placeholder="Enter code" maxlength="9">
+                            <div class="captcha-validation">
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="form-options">
+                        <label class="cyber-checkbox">
+                            <input type="checkbox" id="remember">
+                            <span class="checkbox-design">
+                                <span class="check-inner"></span>
+                                <span class="check-glow"></span>
+                            </span>
+                            <span class="checkbox-label">Maintain Session</span>
+                        </label>
+                        <button type="button" class="cyber-link" id="forgotPassword">
+                            <i class="fas fa-unlock-alt"></i>
+                            <span>Recovery Protocol</span>
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="cyber-button main-action">
+                        <span class="button-content">
+                            <span class="button-text">INITIATE ACCESS</span>
+                            <span class="button-subtext">Quantum Encryption Active</span>
+                        </span>
+                        <div class="button-effects">
+                            <div class="button-glow"></div>
+                            <div class="button-loader">
+                                <div class="loader-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="button-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div class="button-border">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                    </button>
+                </form>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-btn" data-action="quick">
+                        <i class="fas fa-bolt"></i>
+                        <span>Quick Access</span>
+                    </button>
+                    <button class="action-btn" data-action="guest">
+                        <i class="fas fa-user-clock"></i>
+                        <span>Guest Mode</span>
+                    </button>
+                    <button class="action-btn" data-action="emergency">
+                        <i class="fas fa-siren-on"></i>
+                        <span>Emergency</span>
+                    </button>
+                </div>
             </div>
-            <div class="status-item">
-                <i class="fas fa-clock"></i>
-                <span>Server Time: <strong id="serverTime">--:--:--</strong></span>
+
+            <!-- QR Code Tab -->
+            <div class="form-container" id="qrForm">
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <div class="qr-placeholder">
+                            <div class="qr-animation">
+                                <div class="qr-grid"></div>
+                                <div class="qr-scan"></div>
+                            </div>
+                            <div class="qr-instructions">
+                                <i class="fas fa-mobile-alt"></i>
+                                <p>Scan with mobile device</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="cyber-button secondary">
+                        <i class="fas fa-download"></i>
+                        <span>Download QR</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Biometric Tab -->
+            <div class="form-container" id="biometricForm">
+                <div class="biometric-container">
+                    <div class="fingerprint-scanner">
+                        <div class="fingerprint">
+                            <div class="print-lines">
+                                <!-- Fingerprint lines SVG pattern -->
+                            </div>
+                            <div class="scan-overlay"></div>
+                        </div>
+                        <div class="scan-status">
+                            <div class="status-indicator"></div>
+                            <span>Place finger on scanner</span>
+                        </div>
+                    </div>
+                    <button class="cyber-button secondary">
+                        <i class="fas fa-fingerprint"></i>
+                        <span>Initiate Scan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-auth">
+                <div class="divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">OR CONNECT VIA</span>
+                    <span class="divider-line"></span>
+                </div>
+                <div class="social-grid">
+                    <button class="social-btn neural">
+                        <i class="fas fa-brain"></i>
+                        <span>Neural Link</span>
+                    </button>
+                    <button class="social-btn crypto">
+                        <i class="fas fa-wallet"></i>
+                        <span>Crypto Auth</span>
+                    </button>
+                    <button class="social-btn oauth">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>OAuth 3.0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Signup Link -->
+            <div class="form-footer">
+                <p class="cyber-text">
+                    <span class="text-glow">New to Nexus?</span>
+                    <a href="signup.html" class="cyber-link signup-link">
+                        <span>Activate Account</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="stat-value">47,892</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-graph"></div>
+            </div>
+            <div class="stat">
+                <div class="stat-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="stat-value">12.7ms</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+                <div class="stat-graph"></div>
+            </div>
+            <div class="stat">
+                <div class="stat-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="stat-value">256-bit</span>
+                    <span class="stat-label">Encryption</span>
+                </div>
+                <div class="stat-graph"></div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Terminal Modal -->
+    <div class="terminal-modal">
+        <div class="terminal-header">
+            <div class="terminal-title">
+                <i class="fas fa-terminal"></i>
+                <span>SYSTEM TERMINAL</span>
+            </div>
+            <div class="terminal-controls">
+                <button class="term-btn"><i class="fas fa-minus"></i></button>
+                <button class="term-btn"><i class="fas fa-square"></i></button>
+                <button class="term-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <div class="output" id="terminalOutput">
+                <div class="log-entry">> SYSTEM BOOT COMPLETE</div>
+                <div class="log-entry">> INITIALIZING SECURITY PROTOCOLS...</div>
+                <div class="log-entry">> QUANTUM ENCRYPTION ACTIVE</div>
+                <div class="log-entry">> AWAITING USER CREDENTIALS...</div>
+            </div>
+            <div class="input-line">
+                <span class="prompt">nexus:~$</span>
+                <input type="text" class="command-input" autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notification-container"></div>
+
+    <!-- Audio Elements (optional) -->
+    <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-plastic-bubble-click-1124.mp3" preload="auto"></audio>
+    <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="SCRIPT.JS"></script>
 </body>
 </html>
