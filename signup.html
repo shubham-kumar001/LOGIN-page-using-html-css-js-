@@ -3,255 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | Quantum Shield</title>
+    <title>NEXUS | Quantum Registration</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Animated Background Elements -->
-        <div class="bg-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Panel with Branding -->
-            <div class="left-panel">
-                <div class="brand-section">
-                    <div class="brand-logo">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>QuantumShield</span>
-                    </div>
-                    <h1 class="brand-title">Join QuantumShield</h1>
-                    <p class="brand-subtitle">Experience the future of secure authentication</p>
-                    
-                    <div class="benefits-list">
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Military-grade encryption</span>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Zero-knowledge protocol</span>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>24/7 Security monitoring</span>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>GDPR & HIPAA compliant</span>
-                        </div>
-                        <div class="benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>99.9% Uptime guarantee</span>
-                        </div>
+    <!-- Particle Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Glitch Effect Overlay -->
+    <div class="glitch-overlay"></div>
+    
+    <!-- Cyber Grid -->
+    <div class="cyber-grid"></div>
+    
+    <!-- Animated Orbs -->
+    <div class="orbs-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- DNA Strand Animation -->
+    <div class="dna-container">
+        <div class="dna-strand"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Registration Header -->
+        <div class="hologram-header">
+            <div class="hologram-logo">
+                <div class="logo-3d">
+                    <div class="cube">
+                        <div class="face front"><i class="fas fa-user-plus"></i></div>
+                        <div class="face back"><i class="fas fa-id-card"></i></div>
+                        <div class="face right"><i class="fas fa-fingerprint"></i></div>
+                        <div class="face left"><i class="fas fa-shield-alt"></i></div>
+                        <div class="face top"><i class="fas fa-database"></i></div>
+                        <div class="face bottom"><i class="fas fa-key"></i></div>
                     </div>
                 </div>
-                
-                <div class="security-badge">
-                    <div class="badge-icon">
-                        <i class="fas fa-shield-check"></i>
-                    </div>
-                    <div class="badge-content">
-                        <h4>Enterprise Security</h4>
-                        <p>SOC 2 Type II Certified</p>
-                    </div>
+                <div class="logo-text">
+                    <span class="logo-main">ACTIVATE</span>
+                    <span class="logo-sub">QUANTUM IDENTITY</span>
                 </div>
             </div>
             
-            <!-- Right Panel with Signup Form -->
-            <div class="right-panel">
-                <div class="form-container">
-                    <div class="form-header">
-                        <h2>Create Account</h2>
-                        <p>Start your secure journey with us</p>
+            <div class="hologram-text">
+                <h1 class="glitch" data-text="IDENTITY CREATION">IDENTITY CREATION</h1>
+                <p class="cyber-subtitle">Protocol v4.2 - Neural Network Verification</p>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-tracker">
+                <div class="progress-steps">
+                    <div class="step active">
+                        <span class="step-number">01</span>
+                        <span class="step-label">Credentials</span>
                     </div>
-                    
-                    <form id="signupForm" class="auth-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">
-                                    <i class="fas fa-user"></i> First Name
-                                </label>
-                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">
-                                    <i class="fas fa-user"></i> Last Name
-                                </label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="signupEmail">
-                                <i class="fas fa-envelope"></i> Email Address
-                            </label>
-                            <div class="input-with-icon">
-                                <input type="email" id="signupEmail" name="email" placeholder="john.doe@company.com" required>
-                                <i class="fas fa-check-circle validation-icon"></i>
-                            </div>
-                            <div class="input-feedback"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="signupPassword">
-                                <i class="fas fa-key"></i> Create Password
-                            </label>
-                            <div class="input-with-icon">
-                                <input type="password" id="signupPassword" name="password" placeholder="Create a strong password" required>
-                                <button type="button" class="toggle-password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <div class="password-requirements">
-                                <p class="requirements-title">Password must contain:</p>
-                                <ul class="requirements-list">
-                                    <li id="req-length" class="requirement">
-                                        <i class="fas fa-circle"></i>
-                                        <span>At least 8 characters</span>
-                                    </li>
-                                    <li id="req-uppercase" class="requirement">
-                                        <i class="fas fa-circle"></i>
-                                        <span>One uppercase letter</span>
-                                    </li>
-                                    <li id="req-lowercase" class="requirement">
-                                        <i class="fas fa-circle"></i>
-                                        <span>One lowercase letter</span>
-                                    </li>
-                                    <li id="req-number" class="requirement">
-                                        <i class="fas fa-circle"></i>
-                                        <span>One number</span>
-                                    </li>
-                                    <li id="req-special" class="requirement">
-                                        <i class="fas fa-circle"></i>
-                                        <span>One special character</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="password-strength">
-                                <div class="strength-bar">
-                                    <div class="strength-fill" id="signupPasswordStrength"></div>
-                                </div>
-                                <span class="strength-text" id="signupStrengthText">Password strength</span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirmPassword">
-                                <i class="fas fa-key"></i> Confirm Password
-                            </label>
-                            <div class="input-with-icon">
-                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                                <button type="button" class="toggle-password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <div class="input-feedback" id="confirmFeedback"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">
-                                <i class="fas fa-building"></i> Company (Optional)
-                            </label>
-                            <input type="text" id="company" name="company" placeholder="Your company name">
-                        </div>
-                        
-                        <div class="form-options">
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="terms" required>
-                                <span class="checkmark"></span>
-                                I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" id="newsletter">
-                                <span class="checkmark"></span>
-                                Subscribe to security updates and tips
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn-signup" id="signupButton">
-                            <span class="btn-text">Create Secure Account</span>
-                            <i class="fas fa-shield-alt btn-icon"></i>
-                        </button>
-                        
-                        <div class="divider">
-                            <span>or sign up with</span>
-                        </div>
-                        
-                        <div class="social-login">
-                            <button type="button" class="social-btn google">
-                                <i class="fab fa-google"></i>
-                                <span>Google</span>
-                            </button>
-                            <button type="button" class="social-btn microsoft">
-                                <i class="fab fa-microsoft"></i>
-                                <span>Microsoft</span>
-                            </button>
-                            <button type="button" class="social-btn github">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </button>
-                        </div>
-                        
-                        <div class="form-footer">
-                            <p>Already have an account? <a href="index.html" class="login-link">Sign In</a></p>
-                            <p class="privacy-note">
-                                <i class="fas fa-lock"></i>
-                                All data is encrypted end-to-end. We never store plaintext passwords.
-                            </p>
-                        </div>
-                    </form>
+                    <div class="step">
+                        <span class="step-number">02</span>
+                        <span class="step-label">Biometrics</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">03</span>
+                        <span class="step-label">Verification</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">04</span>
+                        <span class="step-label">Activation</span>
+                    </div>
                 </div>
-                
-                <!-- Success Modal -->
-                <div id="successModal" class="modal">
-                    <div class="modal-content success">
-                        <div class="modal-header">
-                            <h3><i class="fas fa-check-circle"></i> Account Created Successfully!</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div class="success-icon">
-                                <i class="fas fa-shield-check"></i>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-wrapper registration-wrapper">
+            <!-- Step 1: Credentials -->
+            <div class="form-container active" id="step1">
+                <form class="cyber-form registration-form">
+                    <div class="form-grid">
+                        <div class="input-field cyberglow">
+                            <div class="input-icon">
+                                <i class="fas fa-id-card"></i>
+                                <div class="icon-pulse"></div>
                             </div>
-                            <p>Your QuantumShield account has been created successfully.</p>
-                            <p>We've sent a verification email to your address.</p>
-                            <button class="btn-continue" onclick="window.location.href='index.html'">
-                                Continue to Login
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
+                            <input type="text" id="fullName" autocomplete="off" required>
+                            <label for="fullName" class="cyber-label">
+                                <span class="label-text">FULL NAME</span>
+                                <span class="label-hint">Legal identification</span>
+                            </label>
+                            <div class="input-effects">
+                                <div class="input-line"></div>
+                                <div class="input-glow"></div>
+                            </div>
                         </div>
+
+                        <div class="input-field cyberglow">
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <input type="email" id="regEmail" required>
+                            <label for="regEmail" class="cyber-label">
+                                <span class="label-text">QUANTUM MAIL</span>
+                                <span class="label-hint">Secure communication</span>
+                            </label>
+                            <div class="input-effects">
+                                <div class="input-line"></div>
+                                <div class="input-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="input-field cyberglow">
+                            <div class="input-icon">
+                                <i class="fas fa-user-secret"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <input type="text" id="username" required>
+                            <label for="username" class="cyber-label">
+                                <span class="label-text">NEURAL HANDLE</span>
+                                <span class="label-hint">Unique identifier</span>
+                            </label>
+                            <div class="input-effects">
+                                <div class="input-line"></div>
+                                <div class="input-glow"></div>
+                            </div>
+                            <div class="availability-check">
+                                <span class="status available">✓ Available</span>
+                                <span class="status taken">✗ Taken</span>
+                            </div>
+                        </div>
+
+                        <div class="input-field cyberglow">
+                            <div class="input-icon">
+                                <i class="fas fa-phone-alt"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <input type="tel" id="phone" required>
+                            <label for="phone" class="cyber-label">
+                                <span class="label-text">NEURAL LINK</span>
+                                <span class="label-hint">Emergency contact</span>
+                            </label>
+                            <div class="input-effects">
+                                <div class="input-line"></div>
+                                <div class="input-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password with Strength Meter -->
+                    <div class="password-section">
+                        <div class="input-field cyberglow">
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <input type="password" id="regPassword" required>
+                            <label for="regPassword" class="cyber-label">
+                                <span class="label-text">QUANTUM KEY</span>
+                                <span class="label-hint">256-bit encryption</span>
+                            </label>
+                            <div class="input-effects">
+                                <div class="input-line"></div>
+                                <div class="input-glow"></div>
+                            </div>
+                            <div class="input-actions">
+                                <button type="button" class="cyber-btn small toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="strength-meter">
+                            <div class="strength-label">
+                                <span>KEY STRENGTH</span>
+                                <span class="strength-value">WEAK</span>
+                            </div>
+                            <div class="meter-bars">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <div class="strength-requirements">
+                                <span class="requirement"><i class="fas fa-check"></i> 12+ characters</span>
+                                <span class="requirement"><i class="fas fa-check"></i> Mixed case</span>
+                                <span class="requirement"><i class="fas fa-check"></i> Numbers</span>
+                                <span class="requirement"><i class="fas fa-check"></i> Special chars</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="input-field cyberglow">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <div class="icon-pulse"></div>
+                        </div>
+                        <input type="password" id="confirmPassword" required>
+                        <label for="confirmPassword" class="cyber-label">
+                            <span class="label-text">KEY CONFIRMATION</span>
+                            <span class="label-hint">Verify encryption key</span>
+                        </label>
+                        <div class="input-effects">
+                            <div class="input-line"></div>
+                            <div class="input-glow"></div>
+                        </div>
+                        <div class="match-status">
+                            <span class="match">✓ Keys match</span>
+                            <span class="mismatch">✗ Mismatch detected</span>
+                        </div>
+                    </div>
+
+                    <!-- Security Question -->
+                    <div class="security-question">
+                        <div class="question-select">
+                            <select id="securityQuestion">
+                                <option value="">Select security question</option>
+                                <option value="1">First neural implant location?</option>
+                                <option value="2">Favorite quantum algorithm?</option>
+                                <option value="3">Cybernetic modification date?</option>
+                            </select>
+                            <div class="select-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="question-answer">
+                            <input type="text" id="securityAnswer" placeholder="Quantum response...">
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="terms-section">
+                        <label class="cyber-checkbox">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkbox-design">
+                                <span class="check-inner"></span>
+                                <span class="check-glow"></span>
+                            </span>
+                            <span class="checkbox-label">
+                                I accept the <a href="#" class="cyber-link">Quantum Terms</a> and 
+                                <a href="#" class="cyber-link">Neural Privacy Protocol</a>
+                            </span>
+                        </label>
+                        
+                        <label class="cyber-checkbox">
+                            <input type="checkbox" id="newsletter">
+                            <span class="checkbox-design">
+                                <span class="check-inner"></span>
+                                <span class="check-glow"></span>
+                            </span>
+                            <span class="checkbox-label">
+                                Subscribe to Nexus transmissions
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Next Step Button -->
+                    <button type="button" class="cyber-button next-step" data-step="2">
+                        <span class="button-content">
+                            <span class="button-text">CONTINUE TO BIOMETRICS</span>
+                            <span class="button-subtext">Step 1 of 4</span>
+                        </span>
+                        <div class="button-effects">
+                            <div class="button-glow"></div>
+                            <div class="button-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Biometrics -->
+            <div class="form-container" id="step2">
+                <div class="biometric-step">
+                    <h3 class="step-title">NEURAL BIOMETRICS</h3>
+                    <p class="step-description">Quantum identity verification requires multi-factor biometric authentication</p>
+                    
+                    <div class="biometric-grid">
+                        <div class="biometric-module active">
+                            <div class="module-icon">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <h4>Fingerprint Scan</h4>
+                            <p>Place finger on scanner</p>
+                            <div class="fingerprint-scanner">
+                                <div class="scan-animation"></div>
+                            </div>
+                            <button class="cyber-btn">Initiate Scan</button>
+                        </div>
+
+                        <div class="biometric-module">
+                            <div class="module-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>Retina Scan</h4>
+                            <p>Look into the scanner</p>
+                            <div class="retina-scanner">
+                                <div class="scan-ring"></div>
+                            </div>
+                            <button class="cyber-btn">Begin Scan</button>
+                        </div>
+
+                        <div class="biometric-module">
+                            <div class="module-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Neural Pattern</h4>
+                            <p>Calibrate brain waves</p>
+                            <div class="brain-wave">
+                                <canvas class="wave-canvas"></canvas>
+                            </div>
+                            <button class="cyber-btn">Calibrate</button>
+                        </div>
+
+                        <div class="biometric-module">
+                            <div class="module-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h4>DNA Sequence</h4>
+                            <p>Genetic verification</p>
+                            <div class="dna-visualizer">
+                                <div class="dna-helix"></div>
+                            </div>
+                            <button class="cyber-btn">Verify</button>
+                        </div>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button class="cyber-button secondary prev-step" data-step="1">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button class="cyber-button next-step" data-step="3">
+                            <span>Continue to Verification</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Verification -->
+            <div class="form-container" id="step3">
+                <div class="verification-step">
+                    <h3 class="step-title">QUANTUM VERIFICATION</h3>
+                    <p class="step-description">Multi-layer security protocol activation</p>
+                    
+                    <div class="verification-methods">
+                        <div class="verification-method">
+                            <div class="method-header">
+                                <i class="fas fa-satellite-dish"></i>
+                                <h4>Quantum Entanglement</h4>
+                            </div>
+                            <p>Pair with quantum particle for instant verification</p>
+                            <div class="quantum-particle">
+                                <div class="particle"></div>
+                                <div class="entanglement"></div>
+                            </div>
+                            <button class="cyber-btn">Entangle</button>
+                        </div>
+
+                        <div class="verification-method">
+                            <div class="method-header">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Blockchain Identity</h4>
+                            </div>
+                            <p>Register identity on quantum blockchain</p>
+                            <div class="blockchain-visual">
+                                <div class="block"></div>
+                                <div class="block"></div>
+                                <div class="block"></div>
+                                <div class="chain"></div>
+                            </div>
+                            <button class="cyber-btn">Register</button>
+                        </div>
+
+                        <div class="verification-method">
+                            <div class="method-header">
+                                <i class="fas fa-robot"></i>
+                                <h4>AI Validation</h4>
+                            </div>
+                            <p>Neural network identity validation</p>
+                            <div class="ai-network">
+                                <div class="neuron"></div>
+                                <div class="neuron"></div>
+                                <div class="neuron"></div>
+                                <div class="connection"></div>
+                            </div>
+                            <button class="cyber-btn">Validate</button>
+                        </div>
+                    </div>
+
+                    <!-- 2FA -->
+                    <div class="two-factor">
+                        <h4>Two-Factor Authentication</h4>
+                        <p>Enter verification code from your quantum device</p>
+                        <div class="code-inputs">
+                            <input type="text" maxlength="1" autocomplete="off">
+                            <input type="text" maxlength="1" autocomplete="off">
+                            <input type="text" maxlength="1" autocomplete="off">
+                            <input type="text" maxlength="1" autocomplete="off">
+                            <input type="text" maxlength="1" autocomplete="off">
+                            <input type="text" maxlength="1" autocomplete="off">
+                        </div>
+                        <button class="cyber-link">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Resend Quantum Code</span>
+                        </button>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button class="cyber-button secondary prev-step" data-step="2">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button class="cyber-button next-step" data-step="4">
+                            <span>Complete Activation</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Activation -->
+            <div class="form-container" id="step4">
+                <div class="activation-step">
+                    <div class="activation-header">
+                        <div class="activation-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>ACTIVATION READY</h3>
+                        <p>Your quantum identity is prepared for initialization</p>
+                    </div>
+
+                    <div class="activation-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Identity Hash:</span>
+                            <span class="summary-value">0x7F9A2B4C8D6E1F3A</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Neural Signature:</span>
+                            <span class="summary-value">VERIFIED</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Quantum Link:</span>
+                            <span class="summary-value">ESTABLISHED</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Security Level:</span>
+                            <span class="summary-value">QUANTUM-9</span>
+                        </div>
+                    </div>
+
+                    <div class="activation-animation">
+                        <div class="activation-ring">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                            <div class="core">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="activation-status">
+                            <span class="status-text">SYSTEM INITIALIZING...</span>
+                            <div class="status-bar">
+                                <div class="status-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activation-actions">
+                        <button class="cyber-button secondary prev-step" data-step="3">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Review</span>
+                        </button>
+                        <button class="cyber-button success" id="completeActivation">
+                            <span>ACTIVATE IDENTITY</span>
+                            <i class="fas fa-bolt"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- System Status Footer -->
-        <div class="status-footer">
-            <div class="status-item">
-                <div class="status-indicator online"></div>
-                <span>System Status: <strong>Operational</strong></span>
+
+        <!-- Registration Footer -->
+        <div class="registration-footer">
+            <p>Already have a quantum identity? <a href="index.html" class="cyber-link">Access Nexus</a></p>
+        </div>
+
+        <!-- Security Badges -->
+        <div class="security-badges">
+            <div class="badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>256-bit Quantum</span>
             </div>
-            <div class="status-item">
-                <i class="fas fa-server"></i>
-                <span>Data Center: <strong>EU-West-1</strong></span>
+            <div class="badge">
+                <i class="fas fa-lock"></i>
+                <span>Zero-Knowledge</span>
             </div>
-            <div class="status-item">
-                <i class="fas fa-clock"></i>
-                <span>Server Time: <strong id="serverTime">--:--:--</strong></span>
+            <div class="badge">
+                <i class="fas fa-globe"></i>
+                <span>GDPR Compliant</span>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Activation Success Modal -->
+    <div class="activation-modal">
+        <div class="modal-content">
+            <div class="success-animation">
+                <div class="success-check">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="success-rings">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                </div>
+            </div>
+            <h2>IDENTITY ACTIVATED</h2>
+            <p>Welcome to the Nexus quantum network</p>
+            <div class="modal-stats">
+                <div class="stat">
+                    <span class="value">0x7F9A2B4C</span>
+                    <span class="label">Identity Hash</span>
+                </div>
+                <div class="stat">
+                    <span class="value">QUANTUM-9</span>
+                    <span class="label">Security Level</span>
+                </div>
+            </div>
+            <button class="cyber-button" id="goToDashboard">
+                <span>ENTER NEXUS</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="SCRIPT.JS"></script>
 </body>
 </html>
