@@ -1,56 +1,171 @@
-// DOM Elements
+// ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Common elements
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-    const togglePasswordButtons = document.querySelectorAll('.toggle-password');
-    const passwordInputs = document.querySelectorAll('input[type="password"]');
-    const serverTimeElement = document.getElementById('serverTime');
-    const twoFactorModal = document.getElementById('twoFactorModal');
-    const successModal = document.getElementById('successModal');
-    
-    // Initialize
-    initRealTimeClock();
-    setupPasswordToggle();
-    setupFormValidation();
-    setupOTPInputs();
-    setupSocialButtons();
-    
-    // Login Form Specific
-    if (loginForm) {
-        setupLoginForm();
-    }
-    
-    // Signup Form Specific
-    if (signupForm) {
-        setupSignupForm();
-    }
+    // Initialize all systems
+    initParticles();
+    init3DEffects();
+    initFormInteractions();
+    initAnimations();
+    initTerminal();
+    initNotifications();
+    initAudio();
+    initQuantumEffects();
 });
 
-// Real-time Clock
-function initRealTimeClock() {
-    const serverTimeElement = document.getElementById('serverTime');
-    if (serverTimeElement) {
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            serverTimeElement.textContent = timeString;
-        }
-        updateClock();
-        setInterval(updateClock, 1000);
-    }
+// ===== PARTICLE SYSTEM =====
+function initParticles() {
+    particlesJS('particleCanvas', {
+        particles: {
+            number: { value: 150, density: { enable: true, value_area: 800 } },
+            color: { value: ["#00ffff", "#ff00ff", "#ffff00", "#00ffaa"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.5, random: true },
+            size: { value: 3, random: true },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#00ffff",
+                opacity: 0.2,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: { enable: false }
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
 }
 
-// Password Toggle Visibility
-function setupPasswordToggle() {
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('input');
+// ===== 3D EFFECTS =====
+function init3DEffects() {
+    // Create floating 3D objects
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.body.appendChild(renderer.domElement);
+    
+    // Create geometric objects
+    const geometry = new THREE.IcosahedronGeometry(2, 1);
+    const material = new THREE.MeshStandardMaterial({
+        color: 0x00ffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.1
+    });
+    
+    const objects = [];
+    for (let i = 0; i < 5; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random() - 0.5) * 100;
+        mesh.position.y = (Math.random() - 0.5) * 100;
+        mesh.position.z = (Math.random() - 0.5) * 100;
+        mesh.scale.setScalar(0.5 + Math.random() * 1.5);
+        scene.add(mesh);
+        objects.push(mesh);
+    }
+    
+    // Add lights
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0x00ffff, 0.5);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+    
+    camera.position.z = 50;
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        
+        objects.forEach((obj, i) => {
+            obj.rotation.x += 0.01;
+            obj.rotation.y += 0.01;
+            obj.position.y += Math.sin(Date.now() * 0.001 + i) * 0.1;
+        });
+        
+        renderer.render(scene, camera);
+    }
+    animate();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}
+
+// ===== QUANTUM EFFECTS =====
+function initQuantumEffects() {
+    // Quantum entanglement animation
+    const quantumParticles = document.querySelectorAll('.quantum-particle .particle');
+    quantumParticles.forEach(particle => {
+        particle.style.animation = `quantumFloat ${2 + Math.random() * 2}s infinite ease-in-out`;
+    });
+    
+    // Blockchain animation
+    const blocks = document.querySelectorAll('.blockchain-visual .block');
+    blocks.forEach((block, i) => {
+        block.style.animationDelay = `${i * 0.5}s`;
+    });
+    
+    // Neural network animation
+    const neurons = document.querySelectorAll('.ai-network .neuron');
+    neurons.forEach((neuron, i) => {
+        neuron.style.animationDelay = `${i * 0.3}s`;
+    });
+}
+
+// ===== FORM INTERACTIONS =====
+function initFormInteractions() {
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    const formContainers = document.querySelectorAll('.form-container');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.dataset.tab;
+            
+            // Update tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Update forms
+            formContainers.forEach(form => {
+                form.classList.remove('active');
+                if (form.id === `${tabId}Form`) {
+                    form.classList.add('active');
+                    animateFormEntrance(form);
+                }
+            });
+            
+            playSound('hover');
+        });
+    });
+    
+    // Password toggle
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.closest('.input-field').querySelector('input');
             const icon = this.querySelector('i');
             
             if (input.type === 'password') {
@@ -62,588 +177,665 @@ function setupPasswordToggle() {
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             }
+            
+            playSound('click');
+        });
+    });
+    
+    // Password strength meter
+    const passwordInputs = document.querySelectorAll('input[type="password"]');
+    passwordInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            updatePasswordStrength(this);
+            checkPasswordMatch();
+        });
+    });
+    
+    // Username availability
+    const usernameInput = document.getElementById('username');
+    if (usernameInput) {
+        usernameInput.addEventListener('input', debounce(checkUsernameAvailability, 500));
+    }
+    
+    // Form submission
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleFormSubmission(this);
+        });
+    });
+    
+    // Multi-step form navigation
+    const nextButtons = document.querySelectorAll('.next-step');
+    const prevButtons = document.querySelectorAll('.prev-step');
+    
+    nextButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const nextStep = this.dataset.step;
+            goToStep(nextStep);
+        });
+    });
+    
+    prevButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const prevStep = this.dataset.step;
+            goToStep(prevStep);
+        });
+    });
+    
+    // Complete activation
+    const completeBtn = document.getElementById('completeActivation');
+    if (completeBtn) {
+        completeBtn.addEventListener('click', completeActivation);
+    }
+}
+
+// ===== ANIMATIONS =====
+function initAnimations() {
+    // Random glitch effects
+    setInterval(() => {
+        const glitchElements = document.querySelectorAll('.glitch');
+        glitchElements.forEach(el => {
+            if (Math.random() > 0.7) {
+                el.classList.add('glitching');
+                setTimeout(() => el.classList.remove('glitching'), 100);
+            }
+        });
+    }, 3000);
+    
+    // Pulse animations
+    const pulseElements = document.querySelectorAll('.icon-pulse, .orb');
+    pulseElements.forEach(el => {
+        el.style.animationDelay = `${Math.random() * 2}s`;
+    });
+    
+    // Hover animations
+    const cyberButtons = document.querySelectorAll('.cyber-button');
+    cyberButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            btn.classList.add('hover');
+            playSound('hover');
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.classList.remove('hover');
+        });
+        
+        btn.addEventListener('click', () => {
+            playSound('click');
+            btn.classList.add('click');
+            setTimeout(() => btn.classList.remove('click'), 300);
         });
     });
 }
 
-// Password Strength Checker
-function checkPasswordStrength(password) {
+// ===== FORM FUNCTIONS =====
+function updatePasswordStrength(input) {
+    const password = input.value;
+    const meter = input.closest('.password-section')?.querySelector('.strength-meter');
+    if (!meter) return;
+    
     let strength = 0;
-    const requirements = {
-        length: password.length >= 8,
-        uppercase: /[A-Z]/.test(password),
-        lowercase: /[a-z]/.test(password),
-        number: /\d/.test(password),
-        special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
-    };
+    const requirements = [
+        password.length >= 12,
+        /[a-z]/.test(password),
+        /[A-Z]/.test(password),
+        /[0-9]/.test(password),
+        /[^A-Za-z0-9]/.test(password)
+    ];
     
-    // Calculate strength (0-100)
-    const requirementCount = Object.keys(requirements).length;
-    const metCount = Object.values(requirements).filter(Boolean).length;
-    strength = Math.round((metCount / requirementCount) * 100);
+    strength = requirements.filter(Boolean).length;
     
-    return { strength, requirements };
+    // Update meter
+    const bars = meter.querySelectorAll('.meter-bars .bar');
+    const value = meter.querySelector('.strength-value');
+    const requirementsList = meter.querySelectorAll('.strength-requirements .requirement');
+    
+    bars.forEach((bar, i) => {
+        bar.classList.remove('active');
+        if (i < strength) {
+            bar.classList.add('active');
+        }
+    });
+    
+    const strengthText = ['CRITICAL', 'WEAK', 'FAIR', 'GOOD', 'STRONG', 'QUANTUM'];
+    value.textContent = strengthText[strength];
+    value.className = `strength-value ${strengthText[strength].toLowerCase()}`;
+    
+    requirementsList.forEach((req, i) => {
+        const icon = req.querySelector('i');
+        icon.className = requirements[i] ? 'fas fa-check' : 'fas fa-times';
+    });
 }
 
-function updatePasswordStrength(password, strengthElement, textElement) {
-    const { strength, requirements } = checkPasswordStrength(password);
+function checkPasswordMatch() {
+    const password = document.getElementById('regPassword')?.value;
+    const confirm = document.getElementById('confirmPassword')?.value;
+    const matchStatus = document.querySelector('.match-status');
     
-    // Update strength bar
-    strengthElement.style.width = `${strength}%`;
+    if (!matchStatus || !password || !confirm) return;
     
-    // Update color based on strength
-    if (strength < 40) {
-        strengthElement.style.background = '#ef4444';
-        textElement.textContent = 'Weak';
-        textElement.style.color = '#ef4444';
-    } else if (strength < 70) {
-        strengthElement.style.background = '#f59e0b';
-        textElement.textContent = 'Moderate';
-        textElement.style.color = '#f59e0b';
-    } else if (strength < 90) {
-        strengthElement.style.background = '#3b82f6';
-        textElement.textContent = 'Strong';
-        textElement.style.color = '#3b82f6';
+    if (password === confirm && password.length > 0) {
+        matchStatus.classList.add('match');
+        matchStatus.classList.remove('mismatch');
+    } else if (confirm.length > 0) {
+        matchStatus.classList.add('mismatch');
+        matchStatus.classList.remove('match');
     } else {
-        strengthElement.style.background = '#10b981';
-        strengthElement.style.backgroundImage = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
-        textElement.textContent = 'Very Strong';
-        textElement.style.color = '#10b981';
-    }
-    
-    return requirements;
-}
-
-// Form Validation
-function setupFormValidation() {
-    // Email validation
-    document.querySelectorAll('input[type="email"]').forEach(input => {
-        input.addEventListener('input', function() {
-            const email = this.value;
-            const feedback = this.closest('.form-group').querySelector('.input-feedback');
-            const icon = this.parentElement.querySelector('.validation-icon');
-            
-            if (!email) {
-                feedback.textContent = '';
-                icon.style.opacity = '0';
-                return;
-            }
-            
-            const isValid = validateEmail(email);
-            if (isValid) {
-                feedback.textContent = '';
-                feedback.style.color = '#10b981';
-                feedback.textContent = '✓ Valid email address';
-                icon.style.opacity = '1';
-                this.classList.remove('error');
-                this.classList.add('success-border');
-            } else {
-                feedback.textContent = 'Please enter a valid email address';
-                feedback.style.color = '#ef4444';
-                icon.style.opacity = '0';
-                this.classList.add('error');
-                this.classList.remove('success-border');
-            }
-        });
-    });
-    
-    // Password strength on input
-    document.querySelectorAll('#password, #signupPassword').forEach(input => {
-        input.addEventListener('input', function() {
-            const strengthElement = document.getElementById(this.id === 'password' ? 'passwordStrength' : 'signupPasswordStrength');
-            const textElement = document.getElementById(this.id === 'password' ? 'strengthText' : 'signupStrengthText');
-            
-            if (this.value) {
-                updatePasswordStrength(this.value, strengthElement, textElement);
-                
-                // Update requirements list for signup
-                if (this.id === 'signupPassword') {
-                    updatePasswordRequirements(this.value);
-                }
-            } else {
-                strengthElement.style.width = '0%';
-                textElement.textContent = 'Password strength';
-                textElement.style.color = '#94a3b8';
-            }
-        });
-    });
-    
-    // Confirm password validation
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    if (confirmPasswordInput) {
-        confirmPasswordInput.addEventListener('input', function() {
-            const password = document.getElementById('signupPassword').value;
-            const feedback = document.getElementById('confirmFeedback');
-            
-            if (!this.value) {
-                feedback.textContent = '';
-                return;
-            }
-            
-            if (this.value !== password) {
-                feedback.textContent = 'Passwords do not match';
-                feedback.style.color = '#ef4444';
-                this.classList.add('error');
-                this.classList.remove('success-border');
-            } else {
-                feedback.textContent = '✓ Passwords match';
-                feedback.style.color = '#10b981';
-                this.classList.remove('error');
-                this.classList.add('success-border');
-            }
-        });
+        matchStatus.classList.remove('match', 'mismatch');
     }
 }
 
-function updatePasswordRequirements(password) {
-    const { requirements } = checkPasswordStrength(password);
+function checkUsernameAvailability() {
+    const input = document.getElementById('username');
+    const status = input?.closest('.input-field')?.querySelector('.availability-check');
+    if (!input || !status) return;
     
-    Object.keys(requirements).forEach(req => {
-        const element = document.getElementById(`req-${req}`);
-        if (element) {
-            const icon = element.querySelector('i');
-            if (requirements[req]) {
-                element.classList.add('valid');
-                icon.classList.remove('fa-circle');
-                icon.classList.add('fa-check-circle');
-                icon.style.color = '#10b981';
-            } else {
-                element.classList.remove('valid');
-                icon.classList.remove('fa-check-circle');
-                icon.classList.add('fa-circle');
-                icon.style.color = '#94a3b8';
-            }
+    const username = input.value.trim();
+    if (username.length < 3) {
+        status.classList.remove('checking', 'available', 'taken');
+        return;
+    }
+    
+    status.classList.add('checking');
+    
+    // Simulate API call
+    setTimeout(() => {
+        const isAvailable = Math.random() > 0.3; // 70% chance available
+        status.classList.remove('checking');
+        status.classList.add(isAvailable ? 'available' : 'taken');
+        
+        if (!isAvailable) {
+            showNotification('Username already taken. Try adding numbers or symbols.', 'warning');
         }
-    });
+    }, 500);
 }
 
-// Login Form Setup
-function setupLoginForm() {
-    const loginForm = document.getElementById('loginForm');
-    const loginButton = document.getElementById('loginButton');
-    const forgotPasswordLink = document.getElementById('forgotPassword');
+// ===== FORM NAVIGATION =====
+function goToStep(stepNumber) {
+    // Update progress tracker
+    const steps = document.querySelectorAll('.progress-steps .step');
+    const progressFill = document.querySelector('.progress-fill');
     
-    loginForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const rememberMe = document.getElementById('rememberMe').checked;
-        
-        // Validate form
-        if (!validateEmail(email)) {
-            showError('Please enter a valid email address');
-            return;
-        }
-        
-        if (!password) {
-            showError('Please enter your password');
-            return;
-        }
-        
-        // Simulate login process
-        await simulateLogin(email, password, rememberMe);
-    });
-    
-    forgotPasswordLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        showForgotPasswordModal();
-    });
-}
-
-// Signup Form Setup
-function setupSignupForm() {
-    const signupForm = document.getElementById('signupForm');
-    const signupButton = document.getElementById('signupButton');
-    
-    signupForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const termsAccepted = document.getElementById('terms').checked;
-        
-        // Validate form
-        if (!firstName || !lastName) {
-            showError('Please enter your name');
-            return;
-        }
-        
-        if (!validateEmail(email)) {
-            showError('Please enter a valid email address');
-            return;
-        }
-        
-        const { strength } = checkPasswordStrength(password);
-        if (strength < 70) {
-            showError('Please use a stronger password');
-            return;
-        }
-        
-        if (password !== confirmPassword) {
-            showError('Passwords do not match');
-            return;
-        }
-        
-        if (!termsAccepted) {
-            showError('Please accept the terms and conditions');
-            return;
-        }
-        
-        // Simulate signup process
-        await simulateSignup(firstName, lastName, email, password);
-    });
-}
-
-// OTP Input Setup
-function setupOTPInputs() {
-    const otpInputs = document.querySelectorAll('.otp-input');
-    
-    otpInputs.forEach((input, index) => {
-        input.addEventListener('input', function() {
-            if (this.value.length === 1 && index < otpInputs.length - 1) {
-                otpInputs[index + 1].focus();
-            }
-        });
-        
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Backspace' && !this.value && index > 0) {
-                otpInputs[index - 1].focus();
-            }
-        });
-    });
-}
-
-// Social Login Buttons
-function setupSocialButtons() {
-    document.querySelectorAll('.social-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const provider = this.classList.contains('google') ? 'Google' :
-                           this.classList.contains('microsoft') ? 'Microsoft' : 'GitHub';
-            
-            showLoading(this);
-            
-            // Simulate social login
-            setTimeout(() => {
-                removeLoading(this);
-                showError(`${provider} login is not implemented in this demo`);
-            }, 1500);
-        });
-    });
-}
-
-// Modal Functions
-function showTwoFactorModal() {
-    const modal = document.getElementById('twoFactorModal');
-    const closeBtn = modal.querySelector('.modal-close');
-    const verifyBtn = modal.querySelector('.btn-verify');
-    
-    modal.classList.add('active');
-    
-    // Close modal on X click
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-    
-    // Close modal on outside click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
-    
-    // Verify OTP
-    verifyBtn.addEventListener('click', () => {
-        const otpInputs = modal.querySelectorAll('.otp-input');
-        const otp = Array.from(otpInputs).map(input => input.value).join('');
-        
-        if (otp.length === 6 && /^\d+$/.test(otp)) {
-            showSuccess('Login successful! Redirecting...');
-            modal.classList.remove('active');
-            
-            // Simulate redirect
-            setTimeout(() => {
-                window.location.href = 'dashboard.html';
-            }, 2000);
+    steps.forEach((step, i) => {
+        if (i < stepNumber) {
+            step.classList.add('active');
         } else {
-            showError('Please enter a valid 6-digit code');
+            step.classList.remove('active');
         }
     });
-}
-
-function showForgotPasswordModal() {
-    alert('Password reset functionality would be implemented here.\nA reset link would be sent to your email.');
-}
-
-// Simulation Functions
-async function simulateLogin(email, password, rememberMe) {
-    const loginButton = document.getElementById('loginButton');
     
-    showLoading(loginButton);
+    progressFill.style.width = `${((stepNumber - 1) / (steps.length - 1)) * 100}%`;
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Switch form step
+    const currentStep = document.querySelector('.form-container.active');
+    const nextStep = document.getElementById(`step${stepNumber}`);
     
-    // Check for demo credentials
-    if (email === 'demo@quantumshield.com' && password === 'Demo@123') {
-        removeLoading(loginButton);
-        showTwoFactorModal();
-    } else if (email === 'admin@quantumshield.com' && password === 'Admin@2024') {
-        removeLoading(loginButton);
-        showTwoFactorModal();
-    } else {
-        removeLoading(loginButton);
-        showError('Invalid email or password. Try: demo@quantumshield.com / Demo@123');
+    if (currentStep && nextStep) {
+        currentStep.classList.remove('active');
+        nextStep.classList.add('active');
+        animateFormEntrance(nextStep);
+        
+        playSound('click');
     }
 }
 
-async function simulateSignup(firstName, lastName, email, password) {
-    const signupButton = document.getElementById('signupButton');
+// ===== FORM SUBMISSION =====
+function handleFormSubmission(form) {
+    // Validate form
+    if (!validateForm(form)) {
+        showNotification('Please fill all required fields correctly.', 'error');
+        return;
+    }
     
-    showLoading(signupButton);
+    // Show loading state
+    const submitBtn = form.querySelector('.cyber-button');
+    if (submitBtn) {
+        submitBtn.classList.add('loading');
+        submitBtn.querySelector('.button-text').textContent = 'PROCESSING...';
+    }
     
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    setTimeout(() => {
+        if (submitBtn) {
+            submitBtn.classList.remove('loading');
+            submitBtn.querySelector('.button-text').textContent = 'ACCESS GRANTED';
+        }
+        
+        showSuccessModal();
+        playSound('success');
+        
+        // Redirect after delay
+        setTimeout(() => {
+            if (window.location.pathname.includes('signup.html')) {
+                window.location.href = 'index.html';
+            } else {
+                // In real app, redirect to dashboard
+                showNotification('Welcome back, User. Redirecting to dashboard...', 'success');
+            }
+        }, 2000);
+    }, 2000);
+}
+
+function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll('input[required], select[required]');
     
-    removeLoading(signupButton);
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+            
+            // Add error animation
+            input.style.animation = 'shake 0.5s';
+            setTimeout(() => input.style.animation = '', 500);
+        } else {
+            input.classList.remove('error');
+        }
+        
+        // Email validation
+        if (input.type === 'email' && input.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value)) {
+                isValid = false;
+                input.classList.add('error');
+                showNotification('Please enter a valid email address.', 'error');
+            }
+        }
+        
+        // Password validation
+        if (input.type === 'password' && input.value) {
+            if (input.value.length < 8) {
+                isValid = false;
+                input.classList.add('error');
+                showNotification('Password must be at least 8 characters.', 'error');
+            }
+        }
+    });
     
-    // Show success modal
-    const successModal = document.getElementById('successModal');
-    successModal.classList.add('active');
+    return isValid;
+}
+
+// ===== ACTIVATION =====
+function completeActivation() {
+    const activationBtn = document.getElementById('completeActivation');
+    const activationModal = document.querySelector('.activation-modal');
+    const progressBar = document.querySelector('.status-progress');
     
-    // Store demo user in localStorage
-    const userData = {
-        firstName,
-        lastName,
-        email,
-        createdAt: new Date().toISOString()
-    };
+    if (!activationBtn || !activationModal) return;
     
-    try {
-        localStorage.setItem('quantumShield_user', JSON.stringify(userData));
-    } catch (e) {
-        console.log('Local storage not available in this demo');
+    // Start activation sequence
+    activationBtn.classList.add('loading');
+    activationBtn.disabled = true;
+    
+    // Animate progress bar
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 2;
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            
+            // Show success animation
+            const activationRing = document.querySelector('.activation-ring');
+            activationRing.classList.add('complete');
+            
+            // Show modal after delay
+            setTimeout(() => {
+                activationModal.classList.add('active');
+                playSound('success');
+                
+                // Confetti effect
+                createConfetti();
+            }, 1000);
+        }
+    }, 50);
+}
+
+// ===== TERMINAL =====
+function initTerminal() {
+    const terminalModal = document.querySelector('.terminal-modal');
+    const closeBtn = terminalModal?.querySelector('.term-btn.close');
+    const commandInput = terminalModal?.querySelector('.command-input');
+    
+    // Toggle terminal with Ctrl+`
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === '`') {
+            terminalModal.style.display = terminalModal.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            terminalModal.style.display = 'none';
+        });
+    }
+    
+    if (commandInput) {
+        commandInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const command = commandInput.value.trim();
+                processCommand(command);
+                commandInput.value = '';
+            }
+        });
     }
 }
 
-// Utility Functions
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+function processCommand(command) {
+    const output = document.getElementById('terminalOutput');
+    const logEntry = document.createElement('div');
+    logEntry.className = 'log-entry';
+    
+    let response = '> ';
+    
+    switch(command.toLowerCase()) {
+        case 'help':
+            response += 'Available commands: help, clear, status, scan, encrypt';
+            break;
+        case 'clear':
+            output.innerHTML = '';
+            return;
+        case 'status':
+            response += 'System Status: ONLINE | Security: QUANTUM-9 | Users: 47,892';
+            break;
+        case 'scan':
+            response += 'Initiating quantum scan... Threat level: NEGLIGIBLE';
+            break;
+        case 'encrypt':
+            response += 'Encrypting with 256-bit quantum algorithm... DONE';
+            break;
+        default:
+            response += `Command not recognized: ${command}`;
+    }
+    
+    logEntry.textContent = response;
+    output.appendChild(logEntry);
+    output.scrollTop = output.scrollHeight;
 }
 
-function showError(message) {
-    // Create error notification
-    const notification = document.createElement('div');
-    notification.className = 'error-notification';
-    notification.innerHTML = `
-        <i class="fas fa-exclamation-circle"></i>
-        <span>${message}</span>
-        <button class="close-notification">&times;</button>
-    `;
-    
-    // Style the notification
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #1e293b;
-        border-left: 4px solid #ef4444;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Add close button functionality
-    const closeBtn = notification.querySelector('.close-notification');
-    closeBtn.addEventListener('click', () => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Add animation keyframes
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    document.body.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-}
-
-function showSuccess(message) {
-    // Create success notification
-    const notification = document.createElement('div');
-    notification.className = 'success-notification';
-    notification.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <span>${message}</span>
-        <button class="close-notification">&times;</button>
-    `;
-    
-    // Style the notification
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #1e293b;
-        border-left: 4px solid #10b981;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Add close button functionality
-    const closeBtn = notification.querySelector('.close-notification');
-    closeBtn.addEventListener('click', () => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    document.body.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-}
-
-function showLoading(button) {
-    const text = button.querySelector('.btn-text');
-    const originalText = text.textContent;
-    
-    button.classList.add('loading');
-    text.textContent = 'Processing...';
-    button.disabled = true;
-}
-
-function removeLoading(button) {
-    const text = button.querySelector('.btn-text');
-    const originalText = text.dataset.originalText || 'Secure Login';
-    
-    button.classList.remove('loading');
-    text.textContent = originalText;
-    button.disabled = false;
-}
-
-// Demo Credentials Notification
-window.addEventListener('load', function() {
-    // Show demo credentials after a delay
-    setTimeout(() => {
+// ===== NOTIFICATIONS =====
+function initNotifications() {
+    // Global notification function
+    window.showNotification = function(message, type = 'info') {
+        const container = document.querySelector('.notification-container');
         const notification = document.createElement('div');
-        notification.className = 'demo-credentials';
+        notification.className = `notification ${type}`;
         notification.innerHTML = `
-            <div style="background: rgba(30, 41, 59, 0.95); padding: 1rem; border-radius: 12px; margin: 1rem; border: 1px solid rgba(99, 102, 241, 0.3);">
-                <h4 style="color: #818cf8; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fas fa-info-circle"></i> Demo Credentials
-                </h4>
-                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
-                    <strong>Email:</strong> demo@quantumshield.com<br>
-                    <strong>Password:</strong> Demo@123<br>
-                    <em style="font-size: 0.85rem;">Try the login with these credentials to see 2FA modal</em>
-                </p>
+            <div class="notification-icon">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            </div>
+            <div class="notification-content">
+                <p>${message}</p>
             </div>
         `;
         
-        // Position based on page
-        if (document.getElementById('loginForm')) {
-            const form = document.getElementById('loginForm');
-            form.parentNode.insertBefore(notification, form.nextSibling);
-        }
-    }, 1000);
-});
+        container.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    };
+}
 
-// Add keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Ctrl + / to focus email field
-    if (e.ctrlKey && e.key === '/') {
-        e.preventDefault();
-        const emailInput = document.getElementById('email') || document.getElementById('signupEmail');
-        if (emailInput) {
-            emailInput.focus();
-        }
-    }
+// ===== AUDIO =====
+function initAudio() {
+    // Preload sounds
+    const sounds = {
+        hover: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3'),
+        click: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-plastic-bubble-click-1124.mp3'),
+        success: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3')
+    };
     
-    // Esc to close modals
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.modal.active').forEach(modal => {
-            modal.classList.remove('active');
+    // Global sound function
+    window.playSound = function(soundName) {
+        if (sounds[soundName]) {
+            sounds[soundName].currentTime = 0;
+            sounds[soundName].play().catch(() => {
+                // Audio playback failed (user might have blocked audio)
+            });
+        }
+    };
+}
+
+// ===== ANIMATION HELPERS =====
+function animateFormEntrance(element) {
+    element.style.animation = 'none';
+    setTimeout(() => {
+        element.style.animation = 'slideUp 0.5s ease-out';
+    }, 10);
+}
+
+function createConfetti() {
+    const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ffaa'];
+    
+    for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.cssText = `
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            top: -20px;
+            left: ${Math.random() * 100}vw;
+            opacity: ${0.5 + Math.random() * 0.5};
+            transform: rotate(${Math.random() * 360}deg);
+            z-index: 10000;
+        `;
+        
+        document.body.appendChild(confetti);
+        
+        // Animate
+        const animation = confetti.animate([
+            { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+            { transform: `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+        ], {
+            duration: 2000 + Math.random() * 1000,
+            easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
         });
-    }
-});
-
-// Add network status indicator
-window.addEventListener('online', updateNetworkStatus);
-window.addEventListener('offline', updateNetworkStatus);
-
-function updateNetworkStatus() {
-    const statusFooter = document.querySelector('.status-footer');
-    if (!statusFooter) return;
-    
-    let networkStatus = statusFooter.querySelector('.network-status');
-    if (!networkStatus) {
-        networkStatus = document.createElement('div');
-        networkStatus.className = 'status-item network-status';
-        statusFooter.appendChild(networkStatus);
-    }
-    
-    if (navigator.onLine) {
-        networkStatus.innerHTML = `
-            <i class="fas fa-wifi"></i>
-            <span>Network: <strong>Online</strong></span>
-        `;
-    } else {
-        networkStatus.innerHTML = `
-            <i class="fas fa-wifi-slash"></i>
-            <span>Network: <strong>Offline</strong></span>
-        `;
+        
+        animation.onfinish = () => confetti.remove();
     }
 }
 
-// Initialize network status
-updateNetworkStatus();
+// ===== UTILITIES =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add additional CSS for new animations
+const additionalStyles = document.createElement('style');
+additionalStyles.textContent = `
+    /* Additional animations */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+    }
+    
+    @keyframes quantumFloat {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-20px) scale(1.1); }
+    }
+    
+    @keyframes slideOutRight {
+        to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    .glitching {
+        animation: glitchText 0.1s 3;
+    }
+    
+    .confetti {
+        border-radius: 50%;
+    }
+    
+    /* Progress tracker */
+    .progress-tracker {
+        width: 100%;
+        max-width: 600px;
+        margin: 30px auto;
+    }
+    
+    .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+    }
+    
+    .step.active {
+        opacity: 1;
+    }
+    
+    .step-number {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 12px;
+        color: #00ffff;
+        background: rgba(0, 255, 255, 0.1);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(0, 255, 255, 0.3);
+    }
+    
+    .step-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    .progress-bar {
+        height: 2px;
+        background: rgba(0, 255, 255, 0.1);
+        border-radius: 1px;
+        overflow: hidden;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffff, #ff00ff);
+        width: 0%;
+        transition: width 0.5s ease;
+    }
+    
+    /* Activation modal */
+    .activation-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+    }
+    
+    .activation-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .modal-content {
+        background: rgba(10, 15, 30, 0.95);
+        border: 2px solid rgba(0, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 500px;
+        transform: scale(0.9);
+        transition: transform 0.5s ease;
+    }
+    
+    .activation-modal.active .modal-content {
+        transform: scale(1);
+    }
+    
+    .success-animation {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 30px;
+    }
+    
+    .success-check {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+        z-index: 2;
+        position: relative;
+    }
+    
+    .success-rings .ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #00ffff;
+        border-radius: 50%;
+        opacity: 0;
+        animation: ringExpand 1s ease-out forwards;
+    }
+    
+    .success-rings .ring:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        animation-delay: 0.2s;
+    }
+    
+    .success-rings .ring:nth-child(2) {
+        width: 140px;
+        height: 140px;
+        animation-delay: 0.4s;
+    }
+    
+    .success-rings .ring:nth-child(3) {
+        width: 160px;
+        height: 160px;
+        animation-delay: 0.6s;
+    }
+    
+    @keyframes ringExpand {
+        to {
+            opacity: 0.5;
+            width: calc(var(--size) + 100px);
+            height: calc(var(--size) + 100px);
+        }
+    }
+`;
+document.head.appendChild(additionalStyles);
